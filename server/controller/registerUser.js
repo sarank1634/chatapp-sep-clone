@@ -41,7 +41,7 @@ async function registerUser(req, res) {
             message: "User registered successfully",
             error: false,
             data: usersaved,
-            success: true
+            success: true 
         });
     } catch (error) {
         if (error?.code === 11000) {
