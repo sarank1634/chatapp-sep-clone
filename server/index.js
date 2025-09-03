@@ -1,9 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const router = require("./routers/router");
+const connectDB = require("./config/connectDB");
 
 
 const app = express();
+
+// parse JSON and form bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(cors({
     origin: process.env.FRONTEND_URL,
     credentials: true,
@@ -19,6 +26,10 @@ app.get("/", (req, res) => {
     });
 });
 
-app.listen(PORT,() =>{
-    console.log(`Server is running on port ${PORT}`);
+app.use('/api', router);
+
+connectDB().then(() => {
+    app.listen(PORT,() =>{
+        console.log(`Server is running on port ${PORT}`);
+    })
 })
