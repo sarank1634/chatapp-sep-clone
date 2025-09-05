@@ -19,8 +19,8 @@ async function registerUser(req, res) {
         if(checkEmail){
             return res.status(400).json({
                 message: "Email already exists",
-                error: true
-            });
+                eror: true
+            });r
         }
 
         //hash the password

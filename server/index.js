@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const cookieParser = require("cookie-parser");
 
 // Debug environment variables
 console.log('=== ENVIRONMENT VARIABLES DEBUG ===');
@@ -18,6 +19,7 @@ const app = express();
 // parse JSON and form bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Request/Response logging middleware
 app.use((req, res, next) => {
